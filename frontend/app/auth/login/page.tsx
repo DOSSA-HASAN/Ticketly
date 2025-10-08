@@ -18,7 +18,7 @@ function Login() {
                     </div>
                     <div>
                         <h2 className='text-dark font-bold text-[30px]'>Welcome Back</h2>
-                        <p className='text-gray-500'>Don't have an account? <Link href={'/auth/register'} className='text-purple'>Sign up</Link></p>
+                        <p className='text-gray-500'>Don&apos;t have an account? <Link href={'/auth/register'} className='text-purple'>Sign up</Link></p>
                     </div>
                     <div className='w-full lg:w-1/2 bg-gray-300 rounded-lg'>
                         <input type="email" placeholder='Email Adress' className='w-full p-3 focus:outline-none' />
