@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-purple: #635ae7;
+  --color-light: #f6f6f8;
+  --color-dark: #121121;
+}
+
+@layer utilities {
+  .p-btn {
+    padding: 8px 20px;
+    font-weight: bold;
+    border-radius: 0.5rem;
+  }
+}
