@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 function Signup() {
 
     const [showPassword, setshowPassword] = useState<boolean>(false)
+    const [showConfirmPassword, setshowConfirmPassword] = useState<boolean>(false)
 
     return (
         <section className='w-full h-[120vh] overflow-hidden'>
@@ -35,9 +36,9 @@ function Signup() {
                         }
                     </div>
                     <div className='flex justify-between items-center w-full lg:w-1/2 bg-gray-300 rounded-lg'>
-                        <input type={showPassword ? "text" : "password"} placeholder='Confirm password' className='w-full p-3 focus:outline-none' />
+                        <input type={showConfirmPassword ? "text" : "password"} placeholder='Confirm password' className='w-full p-3 focus:outline-none' />
                         {
-                            showPassword ? <EyeClosed onClick={() => setshowPassword(!showPassword)} className='text-gray-500 mr-3' /> : <EyeIcon onClick={() => setshowPassword(!showPassword)} className='text-gray-500 mr-3' />
+                            showConfirmPassword ? <EyeClosed onClick={() => setshowConfirmPassword(!showPassword)} className='text-gray-500 mr-3' /> : <EyeIcon onClick={() => setshowPassword(!showPassword)} className='text-gray-500 mr-3' />
                         }
                     </div>
 
