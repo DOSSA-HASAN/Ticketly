@@ -10,8 +10,8 @@ function Signup() {
 
     return (
         <section className='w-full h-[120vh] overflow-hidden'>
-            <div className='w-full max-w-[1440px] flex justify-between items-center p-5 lg:-20 h-full'>
-                <div className='hidden lg:flex w-[45%] relative h-[70%]'>
+            <div className='w-full max-w-[1440px] m-auto flex justify-between items-center p-5 lg:-20 h-full'>
+                <div className='hidden lg:flex w-[45%] relative h-[70%] max-h-[500px]'>
                     <Image className='rounded-md' src={'/register-image.png'} fill priority alt='Image of people purchasing tickets' />
                 </div>
                 <form className='flex flex-col justify-center items-center w-full lg:w-[calc(100%-45%)] space-y-6'>
