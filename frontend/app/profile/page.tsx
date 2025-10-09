@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-function page() {
+function ProfilePage() {
 
     const [user, setUser] = useState({
         name: "John Doe",
@@ -58,4 +58,4 @@ function page() {
     )
 }
 
-export default page
+export default ProfilePage
