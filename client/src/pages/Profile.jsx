@@ -1,5 +1,4 @@
-'use client'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import React, { useState } from 'react'
 
 function ProfilePage() {
@@ -30,9 +29,9 @@ function ProfilePage() {
                             <input type="email" id='email' value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} className='p-3 w-full lg:flex-[3] rounded-[20px] border-1 border-gray-300 bg-black/5 focus:outline-purple' />
                             {
                                 user.isEmailVerified ?
-                                    <Link className='text-center w-full lg:flex-1 text-purple font-semibold bg-gray-300 hover:bg-gray-300/80 p-3 rounded-[900px] mt-5 lg:mt-0 lg:ml-10' href={'profile/change-email'}>Change Email</Link>
+                                    <Link className='text-center w-full lg:flex-1 text-purple font-semibold bg-gray-300 hover:bg-gray-300/80 p-3 rounded-[900px] mt-5 lg:mt-0 lg:ml-10' to={'profile/change-email'}>Change Email</Link>
                                     :
-                                    <Link className='text-center w-full lg:flex-1 text-purple font-semibold bg-gray-300 hover:bg-gray-300/80 p-3 rounded-[900px] mt-5 lg:mt-0 lg:ml-10' href={'/verify-email'}>Verify Email</Link>
+                                    <Link className='text-center w-full lg:flex-1 text-purple font-semibold bg-gray-300 hover:bg-gray-300/80 p-3 rounded-[900px] mt-5 lg:mt-0 lg:ml-10' to={'/verify-email'}>Verify Email</Link>
                             }
                         </div>
                     </div>
@@ -42,9 +41,9 @@ function ProfilePage() {
                             <input type="tel" id='tel' value={user.tel} onChange={(e) => setUser({ ...user, tel: e.target.value })} className='p-3 w-full lg:flex-[3] rounded-[20px] border-1 border-gray-300 bg-black/5 focus:outline-purple' />
                             {
                                 user.isEmailVerified ?
-                                    <Link className='text-center w-full lg:flex-1 text-purple font-semibold bg-gray-300 hover:bg-gray-300/80 p-3 rounded-[900px] mt-5 lg:mt-0 lg:ml-10' href={'/change/email'}>Change Number</Link>
+                                    <Link className='text-center w-full lg:flex-1 text-purple font-semibold bg-gray-300 hover:bg-gray-300/80 p-3 rounded-[900px] mt-5 lg:mt-0 lg:ml-10' to={'/change/email'}>Change Number</Link>
                                     :
-                                    <Link className='text-center w-full lg:flex-1 text-purple font-semibold bg-gray-300 hover:bg-gray-300/80 p-3 rounded-[900px] mt-5 lg:mt-0 lg:ml-10' href={'/verify/email'}>Verify Number</Link>
+                                    <Link className='text-center w-full lg:flex-1 text-purple font-semibold bg-gray-300 hover:bg-gray-300/80 p-3 rounded-[900px] mt-5 lg:mt-0 lg:ml-10' to={'/verify/email'}>Verify Number</Link>
                             }
                         </div>
                     </div>
