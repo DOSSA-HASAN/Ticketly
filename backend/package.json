@@ -10,7 +10,7 @@
     "dev": "nodemon server.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node server.js",
-    "build": "npx prisma generate"
+    "build": "dotenv -e .env -- npx prisma generate"
   },
   "keywords": [],
   "author": "",
