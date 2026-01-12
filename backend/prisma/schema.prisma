@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
+  email     String    @unique
+  role      ROLE      @default(USER)
+  password  String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  accounts  Account[]
+  tickets   Ticket[]
+  Payment   Payment[]
+}
+
+model Account {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  provider     PROVIDER
+  providerId   String?
+  accessToken  String?
+  refreshToken String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model Ticket {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  price       Float
+  eventDate   DateTime
+  location    String
+  isAvailable Boolean   @default(true)
+  quantity    Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt()
+  sellerId    String
+  user        User      @relation(fields: [sellerId], references: [id])
+  Payment     Payment[]
+}
+
+model Payment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String
+  ticketId  String
+  amount    Float
+  reference String   @unique // Paystack reference
+  status    STATUS   @default(PENDING)
+  user      User     @relation(fields: [userId], references: [id])
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum TICKET_STATUS {
+  PENDING
+  PAID
+  FULFILLED
+}
+
+enum ROLE {
+  USER
+  ADMIN
+}
+
+enum PROVIDER {
+  CREDENTIALS
+  GOOGLE
+}
+
+enum STATUS {
+  PENDING
+  SUCCESS
+  FAILED
+}
