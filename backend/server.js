@@ -4,6 +4,8 @@ import cors from "cors"
 import authRoutes from "./routes/auth.route.js"
 import ticketRoutes from "./routes/ticket.route.js"
 import { dbConnect } from "./lib/dbConnect.js"
+import "./utils/passport.strategy.google.js"
+import "./utils/passport.strategy.local.js"
 
 await dbConnect()
 const PORT = process.env.PORT
