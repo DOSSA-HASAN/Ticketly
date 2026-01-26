@@ -46,7 +46,9 @@ passport.use(new GoogleStrategy({
 
 // STRATEGY 2: for flutter 
 passport.use("google-id-token", new GoogleIdTokenStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clockTolerance: 60,
+    getGoogleIdToken: (req) => req.body.id_token
 },
     (parsedToken, googleId, done) => {
         const profile = {
