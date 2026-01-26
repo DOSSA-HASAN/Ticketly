@@ -53,18 +53,24 @@ router.get("/google/callback", passport.authenticate("google", { session: false 
 )
 
 router.post("/google/token", (req, res, next) => {
-    // Explicitly pass the strategy name we defined earlier
+    // We use a custom callback to "catch" the error message from Passport
     passport.authenticate("google-id-token", { session: false }, (err, user, info) => {
-        if (err) return res.status(500).json({ error: err.message });
+        if (err) {
+            console.error("RENDER AUTH ERROR:", err);
+            return res.status(500).json({ error: "Internal Server Error" });
+        }
 
         if (!user) {
-            // 'info' contains why it failed (e.g., "jwt audience invalid")
+            // THIS IS THE KEY: 'info' contains the real reason (e.g., 'jwt audience invalid')
+            console.log("GOOGLE REJECTION REASON:", info);
             return res.status(401).json({
-                message: "Authentication Failed",
-                reason: info?.message || "Check backend logs"
+                message: "Unauthorized",
+                reason: info?.message || "No specific info"
             });
         }
 
+        // If successful, manually log the user in and move to your token generator
+        req.user = user;
         handleAuthSucess(user, res, next);
     })(req, res, next);
 });
