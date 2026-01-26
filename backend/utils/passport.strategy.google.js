@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import { Strategy as GoogleTokenStrategy } from "passport-google-token";
+import { Strategy as GoogleIdTokenStrategy } from "passport-google-id-token";
 import { prisma } from "../lib/dbConnect.js";
 
 // Shared function to find or create user
@@ -45,7 +45,7 @@ passport.use(new GoogleStrategy({
 ))
 
 // STRATEGY 2: for flutter 
-passport.use(new GoogleTokenStrategy({
+passport.use(new GoogleIdTokenStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID
 },
     (parsedToken, googleId, done) => {

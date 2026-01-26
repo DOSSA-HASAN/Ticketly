@@ -43,7 +43,7 @@ const handleAuthSucess = async (user, res, next) => {
             refreshToken
         })
     } catch (e) {
-        return next(error)
+        return next(e)
     }
 }
 
