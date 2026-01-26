@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import { Strategy as GoogleIdTokenStrategy } from "passport-google-id-token";
+import GoogleIdTokenStrategy from "passport-google-id-token";
 import { prisma } from "../lib/dbConnect.js";
 
 // Shared function to find or create user
