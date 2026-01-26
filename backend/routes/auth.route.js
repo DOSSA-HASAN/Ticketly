@@ -52,8 +52,21 @@ router.get("/google/callback", passport.authenticate("google", { session: false 
     (req, res, next) => handleAuthSucess(req.user, res, next)
 )
 
-router.post("/google/token", passport.authenticate("google-id-token", { session: false }),
-    (req, res, next) => handleAuthSucess(req.user, res, next)
-)
+router.post("/google/token", (req, res, next) => {
+    // Explicitly pass the strategy name we defined earlier
+    passport.authenticate("google-id-token", { session: false }, (err, user, info) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        if (!user) {
+            // 'info' contains why it failed (e.g., "jwt audience invalid")
+            return res.status(401).json({
+                message: "Authentication Failed",
+                reason: info?.message || "Check backend logs"
+            });
+        }
+
+        handleAuthSucess(user, res, next);
+    })(req, res, next);
+});
 
 export default router
